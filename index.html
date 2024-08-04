@@ -96,6 +96,25 @@
             color: #555;
         }
 
+        .choose-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .choose-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+            transform: scale(1.1);
+        }
+
         #cart {
             margin-top: 20px;
             border: 1px solid #ddd;
@@ -168,11 +187,11 @@
             <p>Cómo ordenar:</p><br>
             <p>1. Elegir sus productos.</p>
             <p>2. Enviar Whatsapp para confirmar pedido con tienda.</p>
-            <p>3. Para pago en línea: Seleccionar botón "Añadir al Carro".</p>
+            <p>3. Para pago en línea: Seleccionar botón "Añadir al carro".</p>
             <h3>🛒 Carrito</h3>
             <div id="cart-items"></div>
             <p id="cart-total">Total: $0.00</p><br>
-            <p><button id="refresh-btn" onclick="location.reload();">🍗 Corregir Carrito</button></p><br>
+            <p><button id="refresh-btn" onclick="location.reload();">🍗 Borrar Carrito</button></p><br>
             <p>Enviar pedido por Whatsapp:</p><br>
             <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 
@@ -214,7 +233,7 @@
                     <h3>${product.name}</h3>
                     <p>Precio: $${product.price}</p>
                     <p>${product.includes}</p>
-                    <p><button onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
+                    <p><button class="choose-btn" onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
                     <input type="number" id="quantity-${index}" value="1" min="1">
                 `;
                 return productItem;
