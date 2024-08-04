@@ -114,6 +114,26 @@
             transform: scale(1.1);
         }
 
+        select {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #e3240b;
+            border-radius: 5px;
+            background-color: white;
+            color: #333;
+            font-size: 1em;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #ffdd00;
+            box-shadow: 0 0 5px rgba(255, 221, 0, 0.5);
+        }
+
         #cart {
             margin-top: 20px;
             border: 1px solid #ddd;
@@ -216,9 +236,7 @@
                 { name: "Papas Fritas", img: "https://i.imgur.com/8MMaGMz.png", price: 45, includes: "" },
                 { name: "Salsa Verde", img: "https://i.imgur.com/PtQvvqf.png", price: 25, includes: "" },
                 { name: "Salsa Roja", img: "https://i.imgur.com/C47tGVY.png", price: 25, includes: "" },
-                { name: "Paquete Medio Pollo", img: "https://i.imgur.com/EFNZp9M.png", price: 70, includes: "" },
-                { name: "Arroz", img: "https://i.imgur.com/G5xqAdY.png", price: 40, includes: "" },
-                { name: "Tortillas", img: "https://i.imgur.com/0sriEJp.png", price: 30, includes: "" }
+                { name: "Paquete Medio Pollo", img: "https://i.imgur.com/EFNZp9M.png", price: 70, includes: "Incluye medio pollo" }
             ];
 
             const cart = [];
@@ -230,7 +248,7 @@
                 productItem.innerHTML = `
                     <img src="${product.img}" alt="${product.name}">
                     <h3>${product.name}</h3>
-                    <p>Precio: $${product.price}</p>
+                    <p>$${product.price.toFixed(2)}</p>
                     <p>${product.includes}</p>
                     <p><button class="choose-btn" onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
                     <select id="quantity-${index}">
