@@ -1,0 +1,276 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosticerías Durán</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            background-image: url('https://i.imgur.com/xppIpXJ.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #d9534f; /* Color rojo */
+            color: white; /* Color de las letras en blanco */
+            border-bottom: 4px solid #ffdd00;
+        }
+
+        header img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 20px;
+            padding-bottom: 80px; /* Espacio para el footer */
+        }
+
+        h2 {
+            text-align: center;
+            color: black;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product-item {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .product-item h3 {
+            margin: 10px 0;
+            font-size: 1.3em;
+            color: #333;
+        }
+
+        .product-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        #cart {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #cart-items {
+            margin-bottom: 10px;
+        }
+
+        #cart-total {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #d9534f; /* Color rojo */
+            color: white; /* Color de las letras en blanco */
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 4px solid #ffdd00;
+        }
+
+        #whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: black;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        #whatsapp-btn img {
+            width: 24px;
+            height: 24px;
+        }
+
+        #refresh-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        #refresh-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.imgur.com/xppIpXJ.jpeg" alt="Logo">
+        <h1>🐔 Rosticerías Durán</h1>
+        <p>¡Famosos por Sabrosos!</p>
+    </header>
+    <main>
+        <div id="cart">
+            <p>Cómo ordenar:</p><br>
+            <p>1. Elegir sus productos.</p>
+            <p>2. Enviar Whatsapp para confirmar pedido con tienda.</p>
+            <p>3. Para pago en línea: Seleccionar botón "Añadir al Carro".</p>
+            <h3>🛒 Carrito</h3>
+            <div id="cart-items"></div>
+            <p id="cart-total">Total: $0.00</p><br>
+            <p><button id="refresh-btn" onclick="location.reload();">🍗 Corregir Carrito</button></p><br>
+            <p>Enviar pedido por Whatsapp:</p><br>
+            <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 
+              </a></p>
+            <br>
+            <p>Pago con Paypal:</p><br>
+            <div id="paypal-form"></div>
+        </div>
+        <h2>***Nuestro Menú***</h2>
+        <div id="menu" class="product-grid"></div>
+    </main>
+    <footer>
+        Rosticerías Durán &copy; 2024
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = [
+                { name: "Paquete 1", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 120, includes: "Incluye pollo y un complemento (arroz, frijoles o tortillas)" },
+                { name: "Paquete 2", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 150, includes: "Incluye pollo y dos complementos" },
+                { name: "Paquete 3", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 140, includes: "Incluye pollo y tres complementos" },
+                { name: "Cebollitas", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 60, includes: "" },
+                { name: "Frijoles", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 50, includes: "" },
+                { name: "Papas Fritas", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 45, includes: "" },
+                { name: "Salsa Verde", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 25, includes: "" },
+                { name: "Salsa Roja", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 25, includes: "" },
+                { name: "Paquete Medio Pollo", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 70, includes: "" },
+                { name: "Arroz", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 40, includes: "" },
+                { name: "Tortillas", img: "https://i.imgur.com/xppIpXJ.jpeg", price: 30, includes: "" }
+            ];
+
+            const cart = [];
+            let total = 0;
+
+            function createProductElement(product, index) {
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item');
+                productItem.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Precio: $${product.price}</p>
+                    <p>${product.includes}</p>
+                    <p><button onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
+                    <input type="number" id="quantity-${index}" value="1" min="1">
+                `;
+                return productItem;
+            }
+
+            window.addToCart = function(index, price) {
+                const quantityInput = document.getElementById(`quantity-${index}`);
+                const quantity = parseInt(quantityInput.value);
+                const product = products[index];
+                cart.push({ name: product.name, price: price, quantity: quantity });
+                updateCart();
+            };
+
+            function updateCart() {
+                const cartItemsSection = document.getElementById('cart-items');
+                const cartTotal = document.getElementById('cart-total');
+                const paypalForm = document.getElementById('paypal-form');
+                const whatsappBtn = document.getElementById('whatsapp-btn');
+
+                cartItemsSection.innerHTML = '';
+                total = 0;
+                cart.forEach(item => {
+                    cartItemsSection.innerHTML += `<p>${item.name} - $${item.price} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>`;
+                    total += item.price * item.quantity;
+                });
+                cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+                updatePayPalForm();
+                updateWhatsAppLink();
+            }
+
+            function updatePayPalForm() {
+                const paypalForm = document.getElementById('paypal-form');
+                paypalForm.innerHTML = `
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                        <input type="hidden" name="cmd" value="_xclick" />
+                        <input type="hidden" name="business" value="gascagtz@gmail.com" />
+                        <input type="hidden" name="currency_code" value="MXN" />
+                        <input type="hidden" name="amount" value="${total.toFixed(2)}" />
+                        <input type="hidden" name="item_name" value="${cart.map(item => `${item.name} (${item.quantity})`).join(', ')}" />
+                        <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_cart_SM.gif" border="0" name="submit" title="PayPal es una forma segura y fácil de pagar en línea." alt="Pagar con PayPal" />
+                    </form>
+                `;
+            }
+
+            function updateWhatsAppLink() {
+                const whatsappBtn = document.getElementById('whatsapp-btn');
+                const message = `Orden de Rosticería:\n${cart.map(item => `${item.name} (${item.quantity}) - $${item.price} c/u`).join('\n')}\nTotal: $${total.toFixed(2)}`;
+                const encodedMessage = encodeURIComponent(message);
+                whatsappBtn.href = `https://wa.me/525533355687?text=${encodedMessage}`;
+                whatsappBtn.style.display = total > 0 ? 'inline-flex' : 'none';
+            }
+
+            products.forEach((product, index) => {
+                document.getElementById('menu').appendChild(createProductElement(product, index));
+            });
+        });
+    </script>
+</body>
+</html>
