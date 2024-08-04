@@ -242,25 +242,26 @@
             const cart = [];
             let total = 0;
 
-            function createProductElement(product, index) {
-                const productItem = document.createElement('div');
-                productItem.classList.add('product-item');
-                productItem.innerHTML = `
-                    <img src="${product.img}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>$${product.price.toFixed(2)}</p>
-                    <p>${product.includes}</p>
-                    <p><button class="choose-btn" onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
-                    <select id="quantity-${index}">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                `;
-                return productItem;
-            }
+function createProductElement(product, index) {
+    const productItem = document.createElement('div');
+    productItem.classList.add('product-item');
+    productItem.innerHTML = `
+        <img src="${product.img}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>$${product.price.toFixed(2)}</p>
+        <p>${product.includes}</p>
+        <select id="quantity-${index}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <p><button class="choose-btn" onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
+    `;
+    return productItem;
+}
+
 
             window.addToCart = function(index, price) {
                 const quantitySelect = document.getElementById(`quantity-${index}`);
