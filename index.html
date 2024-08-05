@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rosticerías Durán</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+ 
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -54,6 +55,17 @@
             font-weight: 700;
             margin: 20px 0;
         }
+       .menu-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3240b; /* Color rojo */
+    color: white; /* Color de la fuente en blanco */
+    padding: 10px 20px;
+    border-radius: 50px; /* Hacer el cuadro redondo */
+    margin: 20px auto;
+    width: fit-content;
+}
 
         .product-grid {
             display: grid;
@@ -219,7 +231,7 @@
             <p>Pago con Paypal:</p><br>
             <div id="paypal-form"></div>
         </div>
-        <h2>🍽️ Nuestro Menú</h2>
+<h2 class="menu-title-container">🍽️ Nuestro Menú</h2>
         <div id="menu" class="product-grid"></div>
     </main>
     <footer>
