@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rosticerías Durán</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
- 
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -20,8 +19,8 @@
         header {
             text-align: center;
             padding: 20px;
-            background-color: #e3240b; /* Color rojo */
-            color: white; /* Color de las letras en blanco */
+            background-color: #e3240b;
+            color: white;
             border-bottom: 4px solid #ffdd00;
         }
 
@@ -46,26 +45,27 @@
 
         main {
             padding: 20px;
-            padding-bottom: 80px; /* Espacio para el footer */
+            padding-bottom: 80px;
         }
 
         h2 {
             text-align: center;
-            color: black;
+            color: white;
             font-weight: 700;
             margin: 20px 0;
         }
-       .menu-title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e3240b; /* Color rojo */
-    color: white; /* Color de la fuente en blanco */
-    padding: 10px 20px;
-    border-radius: 50px; /* Hacer el cuadro redondo */
-    margin: 20px auto;
-    width: fit-content;
-}
+
+        .menu-title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e3240b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin: 20px auto;
+            width: fit-content;
+        }
 
         .product-grid {
             display: grid;
@@ -153,6 +153,11 @@
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
         }
 
         #cart-items {
@@ -167,8 +172,8 @@
         footer {
             text-align: center;
             padding: 20px;
-            background-color: #e3240b; /* Color rojo */
-            color: white; /* Color de las letras en blanco */
+            background-color: #e3240b;
+            color: white;
             position: fixed;
             width: 100%;
             bottom: 0;
@@ -205,6 +210,108 @@
             background-color: #ffdd00;
             color: black;
         }
+
+        #cart-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #e3240b;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+        }
+
+        #cart-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .modal-body {
+            margin-top: 10px;
+        }
+
+        .modal-body p {
+            margin: 5px 0;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .edit-btn {
+            padding: 10px 20px;
+            background-color: #e3240b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -215,31 +322,43 @@
     </header>
     <main>
         <div id="cart">
-            <p>Cómo ordenar:</p><br>
-            <p>1. Elegir sus productos.</p>
-            <p>2. Enviar Whatsapp para confirmar pedido con tienda.</p>
-            <p>3. Para pago en línea: Seleccionar botón "Añadir al carro".</p>
             <h3>🛒 Carrito</h3>
             <div id="cart-items"></div>
-            <p id="cart-total">Total: $0.00</p><br>
-            <p><button id="refresh-btn" onclick="location.reload();">🍗 Borrar Carrito</button></p><br>
-            <p>Enviar pedido por Whatsapp:</p><br>
-            <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 
-              </a></p>
-            <br>
-            <p>Pago con Paypal:</p><br>
+            <p id="cart-total">Total: $0.00</p>
             <div id="paypal-form"></div>
+            <a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                Hacer Pedido
+            </a>
+            <button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button>
+            <button class="edit-btn" onclick="toggleModal()">Editar Carrito</button>
         </div>
-<h2 class="menu-title-container">🍽️ Nuestro Menú</h2>
+        <button id="cart-btn" onclick="toggleCart()">🛒</button>
+        <div class="menu-title-container">
+            <h2>🍗 MENÚ</h2>
+        </div>
         <div id="menu" class="product-grid"></div>
     </main>
     <footer>
-        Rosticerías Durán &copy; 2024
+        <p>¡Gracias por tu preferencia!</p>
     </footer>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Carrito</h2>
+                <span class="close" onclick="toggleModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="edit-cart-items"></div>
+            <div class="modal-footer">
+                <button class="edit-btn" onclick="toggleModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const products = [
+                 const products = [
                 { name: "Paquete 1", img: "https://i.imgur.com/Z3uKVA8.png", price: 120, includes: "Incluye pollo y un complemento (arroz, frijoles o tortillas)" },
                 { name: "Paquete 2", img: "https://i.imgur.com/TX5izK2.png", price: 150, includes: "Incluye pollo y dos complementos" },
                 { name: "Paquete 3", img: "https://i.imgur.com/winqkR2.png", price: 170, includes: "Incluye pollo y tres complementos" },
@@ -258,32 +377,37 @@
             const cart = [];
             let total = 0;
 
-function createProductElement(product, index) {
-    const productItem = document.createElement('div');
-    productItem.classList.add('product-item');
-    productItem.innerHTML = `
-        <img src="${product.img}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <p>$${product.price.toFixed(2)}</p>
-        <p>${product.includes}</p>
-        <select id="quantity-${index}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <p><button class="choose-btn" onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
-    `;
-    return productItem;
-}
-
+            function createProductElement(product, index) {
+                const productItem = document.createElement('div');
+                productItem.classList.add('product-item');
+                productItem.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price.toFixed(2)}</p>
+                    <p>${product.includes}</p>
+                    <select id="quantity-${index}">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <p><button class="choose-btn" onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
+                `;
+                return productItem;
+            }
 
             window.addToCart = function(index, price) {
                 const quantitySelect = document.getElementById(`quantity-${index}`);
                 const quantity = parseInt(quantitySelect.value);
                 const product = products[index];
-                cart.push({ name: product.name, price: price, quantity: quantity });
+                const existingProduct = cart.find(item => item.name === product.name);
+
+                if (existingProduct) {
+                    existingProduct.quantity += quantity;
+                } else {
+                    cart.push({ name: product.name, price: price, quantity: quantity });
+                }
                 updateCart();
             };
 
@@ -292,16 +416,37 @@ function createProductElement(product, index) {
                 const cartTotal = document.getElementById('cart-total');
                 const paypalForm = document.getElementById('paypal-form');
                 const whatsappBtn = document.getElementById('whatsapp-btn');
+                const editCartItems = document.getElementById('edit-cart-items');
 
                 cartItemsSection.innerHTML = '';
+                editCartItems.innerHTML = '';
                 total = 0;
-                cart.forEach(item => {
+
+                cart.forEach((item, index) => {
                     cartItemsSection.innerHTML += `<p>${item.name} - $${item.price} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>`;
+                    editCartItems.innerHTML += `
+                        <p>
+                            ${item.name} - $${item.price} x 
+                            <input type="number" min="1" value="${item.quantity}" onchange="updateCartItemQuantity(${index}, this.value)">
+                            = $${(item.price * item.quantity).toFixed(2)}
+                            <button onclick="removeCartItem(${index})">Eliminar</button>
+                        </p>`;
                     total += item.price * item.quantity;
                 });
+
                 cartTotal.textContent = `Total: $${total.toFixed(2)}`;
                 updatePayPalForm();
                 updateWhatsAppLink();
+            }
+
+            function updateCartItemQuantity(index, quantity) {
+                cart[index].quantity = parseInt(quantity);
+                updateCart();
+            }
+
+            function removeCartItem(index) {
+                cart.splice(index, 1);
+                updateCart();
             }
 
             function updatePayPalForm() {
@@ -326,10 +471,32 @@ function createProductElement(product, index) {
                 whatsappBtn.style.display = total > 0 ? 'inline-flex' : 'none';
             }
 
+            window.clearCart = function() {
+                cart.length = 0;
+                updateCart();
+            };
+
             products.forEach((product, index) => {
                 document.getElementById('menu').appendChild(createProductElement(product, index));
             });
         });
+
+        function toggleCart() {
+            const cart = document.getElementById('cart');
+            cart.style.display = cart.style.display === 'none' || cart.style.display === '' ? 'block' : 'none';
+        }
+
+        function toggleModal() {
+            const modal = document.getElementById('edit-modal');
+            modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('edit-modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
