@@ -95,6 +95,19 @@
             border-radius: 50px;
             width: fit-content;
             margin: 20px auto;
+            animation: bounce 1.5s 2s;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
         }
 
         .product-grid {
@@ -483,7 +496,7 @@
               </a></p>
             <br>
             <button class="edit-btn" onclick="toggleModal()">Editar Carrito</button>
-            <p><button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button></p>
+            <button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button></p>
         </div>
         <button id="cart-btn" onclick="toggleCart()">🛒</button>
         <div class="menu-title-container">
