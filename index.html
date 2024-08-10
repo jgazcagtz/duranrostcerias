@@ -14,21 +14,13 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f4f4f4;
             color: #333;
+            overflow-x: hidden;
         }
 
-        /* Header with animation */
-        header {
-            text-align: center;
-            padding: 20px 10px;
-            background-color: #e3240b;
-            color: white;
-            border-bottom: 4px solid #ffdd00;
-            animation: slideIn 1s ease-out;
-        }
-
-        @keyframes slideIn {
+        /* Keyframes for Animations */
+        @keyframes slideInDown {
             from {
                 transform: translateY(-100%);
                 opacity: 0;
@@ -39,45 +31,65 @@
             }
         }
 
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #e62408;
+            color: white;
+            border-bottom: 2px solid #f6a623;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideInDown 0.7s ease-out;
+        }
+
         header img {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
-            animation: zoomIn 1s ease-out;
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            animation: bounceIn 1s ease;
         }
 
         h1 {
-            font-size: 2em;
+            font-size: 2.5em;
             font-weight: 700;
             margin-bottom: 5px;
-            animation: fadeIn 2s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease-out;
         }
 
         p {
             font-size: 1em;
             margin-top: 5px;
+            color: #fff;
+            animation: fadeInUp 1s ease-out;
         }
 
         /* Main Content */
@@ -89,32 +101,22 @@
             text-align: center;
             color: white;
             font-weight: 700;
-            margin: 10px 0;
-            background-color: #e3240b;
+            margin: 20px 0;
+            background-color: #e62408;
             padding: 10px;
             border-radius: 50px;
             width: fit-content;
             margin: 20px auto;
-            animation: bounce 1.5s 2s;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             justify-content: center;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .product-item {
@@ -125,48 +127,51 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .product-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
         .product-item img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
             object-fit: cover;
         }
 
         .product-item h3 {
             margin: 10px 0;
-            font-size: 1.2em;
+            font-size: 1.5em;
             color: #333;
         }
 
         .product-item p {
             margin: 10px 0;
-            color: #555;
+            color: #777;
+            font-size: 0.9em;
         }
 
         .choose-btn {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #e3240b;
+            padding: 12px 24px;
+            background-color: #ff6f61;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 1em;
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .choose-btn:hover {
-            background-color: #ffdd00;
+            background-color: #f6a623;
             color: black;
-            transform: scale(1.1);
+            transform: translateY(-3px);
         }
 
         select {
@@ -174,7 +179,7 @@
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #e3240b;
+            border: 1px solid #ddd;
             border-radius: 8px;
             background-color: white;
             color: #333;
@@ -185,8 +190,8 @@
 
         select:focus {
             outline: none;
-            border-color: #ffdd00;
-            box-shadow: 0 0 5px rgba(255, 221, 0, 0.5);
+            border-color: #ff6f61;
+            box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
         }
 
         /* Cart Styles */
@@ -206,6 +211,7 @@
             display: none;
             overflow-y: auto;
             max-height: 80vh;
+            animation: fadeInUp 0.5s ease-out;
         }
 
         #cart h3 {
@@ -214,16 +220,14 @@
 
         #cart-items p {
             margin-bottom: 15px;
+            color: #555;
         }
 
         #cart-total {
             font-weight: 700;
             margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-
-        #paypal-form {
-            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #333;
         }
 
         ul {
@@ -236,79 +240,42 @@
             margin-bottom: 10px;
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #e3240b;
+            padding: 2.5px;
+            background-color: #e62408;
             color: white;
             position: fixed;
             width: 100%;
             bottom: 0;
-            border-top: 4px solid #ffdd00;
+            border-top: 2px solid #f6a623;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        #whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: white;
-            text-decoration: none;
-            font-size: 1em;
-            margin-top: 10px;
-            padding: 5px 5px;
-            background-color: #e3240b;
-            border: none;
-            border-radius: 8px;
-        }
-
-        #whatsapp-btn img {
-            width: 20px;
-            height: 20px;
-        }
-
-        #whatsapp-btn:hover {
-            background-color: yellow;
-            color: black;
-        }
-
-        #refresh-btn {
-            padding: 10px 20px;
-            background-color: #e3240b;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease;
-        }
-
-        #refresh-btn:hover {
-            background-color: #ffdd00;
-            color: black;
-        }
-
+        /* Cart Button */
         #cart-btn {
             position: fixed;
-            bottom: 90px;
+            bottom: 80px;
             right: 20px;
-            background-color: yellow;
+            background-color: #ff6f61;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2em;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5em;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             z-index: 1001;
+            animation: bounceIn 0.5s ease-out;
         }
 
         #cart-btn:hover {
-            background-color: white;
-            color: black;
+            background-color: #f6a623;
         }
 
         /* Modal Styles */
@@ -321,7 +288,7 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.5);
         }
 
         .modal-content {
@@ -334,6 +301,7 @@
             border-radius: 12px;
             position: relative;
             transition: transform 0.3s ease;
+            animation: fadeInUp 0.5s ease-out;
         }
 
         .modal-content:hover {
@@ -363,6 +331,7 @@
 
         .modal-header h2 {
             margin: 0;
+            color: white;
         }
 
         .modal-body p {
@@ -370,50 +339,179 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            color: #555;
         }
 
         .quantity-btn {
-            background-color: #e3240b;
+            background-color: #ff6f61;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
             cursor: pointer;
             font-size: 1em;
             margin: 0 5px;
         }
 
         .quantity-btn:hover {
-            background-color: #ffdd00;
+            background-color: #f6a623;
             color: black;
         }
 
-        .edit-btn {
+        /* New Button Styles */
+        .edit-btn, #refresh-btn {
             padding: 10px 20px;
-            background-color: #e3240b;
+            background-color: #ff6f61;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease;
-            margin-right: 10px;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .edit-btn:hover {
-            background-color: #ffdd00;
+        .edit-btn:hover, #refresh-btn:hover {
+            background-color: #f6a623;
             color: black;
+            transform: translateY(-3px);
         }
 
+        #whatsapp-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        #whatsapp-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #whatsapp-btn:hover {
+            background-color: #22b358;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Horizontal Menu Styles */
+        .horizontal-product-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .horizontal-product-item {
+            text-align: left;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 320px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .horizontal-product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .horizontal-product-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .horizontal-product-item h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.3em;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .horizontal-product-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        /* New Horizontal Scroll with Cards for Uber Eats/Rappi-like Menu */
+        .scroll-menu {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+            gap: 20px;
+        }
+
+        .scroll-menu-item {
+            min-width: 250px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scroll-menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .scroll-menu-item-content {
+            padding: 15px;
+        }
+
+        .scroll-menu-item h3 {
+            margin: 10px 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .scroll-menu-item p {
+            margin: 5px 0;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        .scroll-menu-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Media Queries */
         @media (max-width: 768px) {
             header img {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
             }
 
             h1 {
-                font-size: 1.5em;
+                font-size: 2em;
             }
 
             p {
@@ -421,7 +519,7 @@
             }
 
             .choose-btn {
-                font-size: 0.8em;
+                font-size: 0.9em;
             }
 
             #cart-btn {
@@ -433,12 +531,12 @@
 
         @media (max-width: 480px) {
             header img {
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
             }
 
             h1 {
-                font-size: 1.2em;
+                font-size: 1.5em;
             }
 
             p {
@@ -446,12 +544,12 @@
             }
 
             .product-item img {
-                width: 60px;
-                height: 60px;
+                width: 70px;
+                height: 70px;
             }
 
             .product-item h3 {
-                font-size: 1em;
+                font-size: 1.2em;
             }
 
             #cart {
@@ -492,17 +590,24 @@
             </ul>
             <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                Confirmar orden-Whatsapp
+                Confirmar orden por Whatsapp
               </a></p>
             <br>
             <button class="edit-btn" onclick="toggleModal()">Editar Carrito</button>
             <button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button></p>
         </div>
         <button id="cart-btn" onclick="toggleCart()">🛒</button>
+        
+        <!-- New Horizontal Menu -->
         <div class="menu-title-container">
-            <h2>🍗 MENÚ</h2>
+            <h2>🔥 Los Básicos</h2>
         </div>
-        <div id="menu" class="product-grid"></div>
+        <div id="menu-horizontal" class="horizontal-product-grid"></div>
+        
+        <div class="menu-title-container">
+            <h2>🍗 Menú</h2>
+        </div>
+        <div id="menu" class="scroll-menu"></div>
     </main>
     <footer>
         <p>¡Gracias por tu preferencia!</p>
@@ -540,38 +645,67 @@
             const cart = [];
             let total = 0;
 
-            function createProductElement(product, index) {
+            function createProductElement(product, index, layout = 'vertical') {
                 const productItem = document.createElement('div');
-                productItem.classList.add('product-item');
-                productItem.innerHTML = `
-                    <img src="${product.img}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>$${product.price.toFixed(2)}</p>
-                    <p>${product.includes}</p>
-                    <select id="quantity-${index}" onchange="window.productSelected('${product.name}', this.value)">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <p><button class="choose-btn" onclick="window.addToCart(${index}, ${product.price})">Elegir</button></p>
-                `;
+                if (layout === 'horizontal') {
+                    productItem.classList.add('horizontal-product-item');
+                    productItem.innerHTML = `
+                        <img src="${product.img}" alt="${product.name}">
+                        <div class="product-item-content">
+                            <h3>${product.name}</h3>
+                            <p>$${product.price.toFixed(2)}</p>
+                            <p>${product.includes}</p>
+                            <select id="quantity-${layout}-${index}">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <p><button class="choose-btn" onclick="window.addToCart(${index}, '${layout}')">Elegir</button></p>
+                        </div>
+                    `;
+                } else {
+                    productItem.classList.add('scroll-menu-item');
+                    productItem.innerHTML = `
+                        <img src="${product.img}" alt="${product.name}">
+                        <div class="scroll-menu-item-content">
+                            <h3>${product.name}</h3>
+                            <p>$${product.price.toFixed(2)}</p>
+                            <p>${product.includes}</p>
+                            <select id="quantity-${layout}-${index}">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <p><button class="choose-btn" onclick="window.addToCart(${index}, '${layout}')">Elegir</button></p>
+                        </div>
+                    `;
+                }
                 return productItem;
             }
 
-            
+            function displayProducts(productsToDisplay, layout = 'vertical') {
+                const menu = layout === 'horizontal' ? document.getElementById('menu-horizontal') : document.getElementById('menu');
+                menu.innerHTML = '';
+                productsToDisplay.forEach((product, index) => {
+                    menu.appendChild(createProductElement(product, index, layout));
+                });
+            }
 
-            window.addToCart = function(index, price) {
-                const quantitySelect = document.getElementById(`quantity-${index}`);
+            window.addToCart = function(index, layout = 'vertical') {
+                const productList = layout === 'horizontal' ? topProducts : products;
+                const quantitySelect = document.getElementById(`quantity-${layout}-${index}`);
                 const quantity = parseInt(quantitySelect.value);
-                const product = products[index];
+                const product = productList[index];
                 const existingProduct = cart.find(item => item.name === product.name);
 
                 if (existingProduct) {
                     existingProduct.quantity += quantity;
                 } else {
-                    cart.push({ name: product.name, price: price, quantity: quantity });
+                    cart.push({ name: product.name, price: product.price, quantity: quantity });
                 }
                 alert(`Producto agregado al carrito: ${product.name} x ${quantity}`);
                 updateCart();
@@ -659,9 +793,12 @@
                 updateCart();
             };
 
-            products.forEach((product, index) => {
-                document.getElementById('menu').appendChild(createProductElement(product, index));
-            });
+            // Display top 6 most expensive products in horizontal layout
+            const topProducts = [...products].sort((a, b) => b.price - a.price).slice(0, 6);
+            displayProducts(topProducts, 'horizontal');
+
+            // Display all products in vertical layout initially
+            displayProducts(products, 'vertical');
         });
 
         function toggleCart() {
