@@ -5,23 +5,38 @@
     <title>Rosticerías Durán</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
+        /* Reset CSS */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
             background-color: #f9f9f9;
-            background-size: 30%;
-            background-position: center;
             color: #333;
         }
 
+        /* Header with animation */
         header {
             text-align: center;
-            padding: 10px;
+            padding: 20px 10px;
             background-color: #e3240b;
             color: white;
             border-bottom: 4px solid #ffdd00;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         header img {
@@ -30,22 +45,44 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
+            animation: zoomIn 1s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         h1 {
-            margin: 0;
             font-size: 2em;
             font-weight: 700;
+            margin-bottom: 5px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         p {
-            margin: 0;
             font-size: 1em;
+            margin-top: 5px;
         }
 
+        /* Main Content */
         main {
-            padding: 10px;
-            padding-bottom: 80px;
+            padding: 20px 10px;
         }
 
         h2 {
@@ -53,31 +90,24 @@
             color: white;
             font-weight: 700;
             margin: 10px 0;
-        }
-
-        .menu-title-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: #e3240b;
-            color: white;
-            padding: 10px 15px;
+            padding: 10px;
             border-radius: 50px;
-            margin: 10px auto;
             width: fit-content;
+            margin: 20px auto;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
         }
 
         .product-item {
             text-align: center;
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 20px;
             border-radius: 12px;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -98,22 +128,22 @@
 
         .product-item h3 {
             margin: 10px 0;
-            font-size: 1.1em;
+            font-size: 1.2em;
             color: #333;
         }
 
         .product-item p {
-            margin: 5px 0;
+            margin: 10px 0;
             color: #555;
         }
 
         .choose-btn {
             display: inline-block;
-            padding: 8px 15px;
+            padding: 10px 20px;
             background-color: #e3240b;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.9em;
             transition: background-color 0.3s ease, transform 0.3s ease;
@@ -129,10 +159,10 @@
         select {
             display: block;
             width: 100%;
-            padding: 8px;
-            margin: 8px 0;
+            padding: 10px;
+            margin: 10px 0;
             border: 1px solid #e3240b;
-            border-radius: 5px;
+            border-radius: 8px;
             background-color: white;
             color: #333;
             font-size: 0.9em;
@@ -146,32 +176,56 @@
             box-shadow: 0 0 5px rgba(255, 221, 0, 0.5);
         }
 
+        /* Cart Styles */
         #cart {
-            margin-top: 10px;
+            margin-top: 20px;
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 15px;
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: fixed;
-            bottom: 10px;
-            right: 10px;
+            bottom: 20px;
+            right: 20px;
             z-index: 1000;
+            width: 300px;
+            max-width: 90%;
             display: none;
+            overflow-y: auto;
+            max-height: 70vh;
         }
 
-        #cart-items {
-            margin-bottom: 10px;
+        #cart h3 {
+            margin-bottom: 20px;
+        }
+
+        #cart-items p {
+            margin-bottom: 15px;
         }
 
         #cart-total {
             font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        #paypal-form {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+        }
+
+        ul li {
             margin-bottom: 10px;
         }
 
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             background-color: #e3240b;
             color: white;
             position: fixed;
@@ -184,15 +238,14 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            color: black;
+            color: white;
             text-decoration: none;
             font-size: 1em;
             margin-top: 10px;
-            padding: 8px 15px;
+            padding: 5px 5px;
             background-color: #e3240b;
-            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
         }
 
         #whatsapp-btn img {
@@ -206,12 +259,11 @@
         }
 
         #refresh-btn {
-            margin-top: 10px;
-            padding: 8px 15px;
+            padding: 10px 20px;
             background-color: #e3240b;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.9em;
             transition: background-color 0.3s ease;
@@ -224,8 +276,8 @@
 
         #cart-btn {
             position: fixed;
-            bottom: 60px;
-            right: 10px;
+            bottom: 90px;
+            right: 20px;
             background-color: yellow;
             color: white;
             border: none;
@@ -246,23 +298,23 @@
             color: black;
         }
 
+        /* Modal Styles */
         .modal {
-    display: block; /* Change from 'none' to 'block' for testing */
-    position: fixed;
-    z-index: 1002;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
 
         .modal-content {
             background-color: #fefefe;
             margin: 10% auto;
-            padding: 15px;
+            padding: 20px;
             border: 1px solid #888;
             width: 90%;
             max-width: 500px;
@@ -293,35 +345,47 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 15px;
         }
 
         .modal-header h2 {
             margin: 0;
         }
 
-        .modal-body {
-            margin-top: 10px;
-        }
-
         .modal-body p {
-            margin: 5px 0;
-        }
-
-        .modal-footer {
+            margin: 15px 0;
             display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .edit-btn {
-            padding: 8px 15px;
+        .quantity-btn {
             background-color: #e3240b;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 0 5px;
+        }
+
+        .quantity-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+        }
+
+        .edit-btn {
+            padding: 10px 20px;
+            background-color: #e3240b;
+            color: white;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 0.9em;
             transition: background-color 0.3s ease;
+            margin-right: 10px;
         }
 
         .edit-btn:hover {
@@ -402,8 +466,7 @@
             <p id="cart-total">Total: $0.00</p>
             <p>Pagar con PayPal:</p><br>
             <div id="paypal-form"></div>
-            <br>
-            <p>Métodos de pago:</p>
+            <p>Método de pago:</p>
             <ul id="payment-methods">
                 <li><input type="radio" id="online-payment" name="payment-method" value="En línea" checked> En línea</li>
                 <li><input type="radio" id="cash-payment" name="payment-method" value="Efectivo"> Efectivo</li>
@@ -414,11 +477,12 @@
                 <li><input type="radio" id="delivery" name="delivery-method" value="A Domicilio" checked> A Domicilio</li>
                 <li><input type="radio" id="pickup" name="delivery-method" value="Recoger en Sucursal"> Recoger en Sucursal</li>
             </ul>
-            <a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
+            <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                Confirmar orden - Whatsapp
-            </a>
+                Confirmar orden-Whatsapp
+              </a></p>
             <br>
+            <button class="edit-btn" onclick="toggleModal()">Editar Carrito</button>
             <p><button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button></p>
         </div>
         <button id="cart-btn" onclick="toggleCart()">🛒</button>
@@ -426,7 +490,12 @@
             <h2>🍗 MENÚ</h2>
         </div>
         <div id="menu" class="product-grid"></div>
-       <div id="edit-modal" class="modal">
+    </main>
+    <footer>
+        <p>¡Gracias por tu preferencia!</p>
+    </footer>
+
+    <div id="edit-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Editar Carrito</h2>
@@ -438,12 +507,6 @@
             </div>
         </div>
     </div>
-    </main>
-    <footer>
-        <p>¡Gracias por tu preferencia!</p>
-    </footer>
-
-   
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -484,7 +547,7 @@
                 return productItem;
             }
 
-           
+            
 
             window.addToCart = function(index, price) {
                 const quantitySelect = document.getElementById(`quantity-${index}`);
@@ -516,10 +579,12 @@
                     cartItemsSection.innerHTML += `<p>${item.name} - $${item.price} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>`;
                     editCartItems.innerHTML += `
                         <p>
-                            ${item.name} - $${item.price} x 
-                            <input type="number" min="1" value="${item.quantity}" onchange="updateCartItemQuantity(${index}, this.value)">
+                            ${item.name} - 
+                            <button class="quantity-btn" onclick="window.decreaseQuantity(${index})">-</button>
+                            ${item.quantity}
+                            <button class="quantity-btn" onclick="window.increaseQuantity(${index})">+</button>
                             = $${(item.price * item.quantity).toFixed(2)}
-                            <button onclick="removeCartItem(${index})">Eliminar</button>
+                            <button onclick="window.removeCartItem(${index})">Eliminar</button>
                         </p>`;
                     total += item.price * item.quantity;
                 });
@@ -529,15 +594,24 @@
                 updateWhatsAppLink();
             }
 
-            function updateCartItemQuantity(index, quantity) {
-                cart[index].quantity = parseInt(quantity);
+            window.increaseQuantity = function(index) {
+                cart[index].quantity += 1;
                 updateCart();
-            }
+            };
 
-            function removeCartItem(index) {
+            window.decreaseQuantity = function(index) {
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity -= 1;
+                } else {
+                    window.removeCartItem(index);
+                }
+                updateCart();
+            };
+
+            window.removeCartItem = function(index) {
                 cart.splice(index, 1);
                 updateCart();
-            }
+            };
 
             function updatePayPalForm() {
                 const paypalForm = document.getElementById('paypal-form');
