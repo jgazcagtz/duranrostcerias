@@ -147,14 +147,14 @@
         }
 
         #cart {
-            margin-top: 5px;
+            margin-top: 10px;
             border: 1px solid #ddd;
-            padding: 20px;
+            padding: 10px;
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: fixed;
-            bottom: 20px;
+            bottom: 10px;
             right: 10px;
             z-index: 1000;
             display: none;
@@ -247,16 +247,17 @@
         }
 
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 1002;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
+    display: block; /* Change from 'none' to 'block' for testing */
+    position: fixed;
+    z-index: 1002;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
 
         .modal-content {
             background-color: #fefefe;
@@ -402,16 +403,22 @@
             <p>Pagar con PayPal:</p><br>
             <div id="paypal-form"></div>
             <br>
-            <p>Forma de pago:</p><br>
-            <div id="payment-methods">
+            <p>Métodos de pago:</p>
+            <ul id="payment-methods">
                 <li><input type="radio" id="online-payment" name="payment-method" value="En línea" checked> En línea</li>
                 <li><input type="radio" id="cash-payment" name="payment-method" value="Efectivo"> Efectivo</li>
                 <li><input type="radio" id="transfer-payment" name="payment-method" value="Transferencia"> Transferencia</li>
-            </div><br>
-            <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
+            </ul>
+            <p>Método de entrega:</p>
+            <ul id="delivery-methods">
+                <li><input type="radio" id="delivery" name="delivery-method" value="A Domicilio" checked> A Domicilio</li>
+                <li><input type="radio" id="pickup" name="delivery-method" value="Recoger en Sucursal"> Recoger en Sucursal</li>
+            </ul>
+            <a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                Enviar orden - Whatsapp
-              </a></p><br>
+                Confirmar orden - Whatsapp
+            </a>
+            <br>
             <p><button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button></p>
         </div>
         <button id="cart-btn" onclick="toggleCart()">🛒</button>
@@ -419,12 +426,7 @@
             <h2>🍗 MENÚ</h2>
         </div>
         <div id="menu" class="product-grid"></div>
-    </main>
-    <footer>
-        <p>¡Gracias por tu preferencia!</p>
-    </footer>
-
-    <div id="edit-modal" class="modal">
+       <div id="edit-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Editar Carrito</h2>
@@ -436,6 +438,12 @@
             </div>
         </div>
     </div>
+    </main>
+    <footer>
+        <p>¡Gracias por tu preferencia!</p>
+    </footer>
+
+   
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -548,13 +556,14 @@
             function updateWhatsAppLink() {
                 const whatsappBtn = document.getElementById('whatsapp-btn');
                 const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
-                const message = `Orden de Rosticería:\n${cart.map(item => `${item.name} (${item.quantity}) - $${item.price} c/u`).join('\n')}\nTotal: $${total.toFixed(2)}\nMétodo de pago: ${selectedPaymentMethod}`;
+                const selectedDeliveryMethod = document.querySelector('input[name="delivery-method"]:checked').value;
+                const message = `Orden de Rosticería:\n${cart.map(item => `${item.name} (${item.quantity}) - $${item.price} c/u`).join('\n')}\nTotal: $${total.toFixed(2)}\nMétodo de pago: ${selectedPaymentMethod}\nMétodo de entrega: ${selectedDeliveryMethod}`;
                 const encodedMessage = encodeURIComponent(message);
                 whatsappBtn.href = `https://wa.me/525533355687?text=${encodedMessage}`;
                 whatsappBtn.style.display = total > 0 ? 'inline-flex' : 'none';
             }
 
-            document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+            document.querySelectorAll('input[name="payment-method"], input[name="delivery-method"]').forEach(radio => {
                 radio.addEventListener('change', updateWhatsAppLink);
             });
 
