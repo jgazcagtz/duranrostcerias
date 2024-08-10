@@ -6,376 +6,386 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <style>
         body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    background-size: 30%;
-    background-position: center;
-    color: #333;
-}
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            background-size: 30%;
+            background-position: center;
+            color: #333;
+        }
 
-header {
-    text-align: center;
-    padding: 10px;
-    background-color: #e3240b;
-    color: white;
-    border-bottom: 4px solid #ffdd00;
-}
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #e3240b;
+            color: white;
+            border-bottom: 4px solid #ffdd00;
+        }
 
-header img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
 
-h1 {
-    margin: 0;
-    font-size: 2em;
-    font-weight: 700;
-}
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: 700;
+        }
 
-p {
-    margin: 0;
-    font-size: 1em;
-}
+        p {
+            margin: 0;
+            font-size: 1em;
+        }
 
-main {
-    padding: 10px;
-    padding-bottom: 80px;
-}
+        main {
+            padding: 10px;
+            padding-bottom: 80px;
+        }
 
-h2 {
-    text-align: center;
-    color: white;
-    font-weight: 700;
-    margin: 10px 0;
-}
+        h2 {
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            margin: 10px 0;
+        }
 
-.menu-title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e3240b;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50px;
-    margin: 10px auto;
-    width: fit-content;
-}
+        .menu-title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e3240b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            margin: 10px auto;
+            width: fit-content;
+        }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    justify-content: center;
-}
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            justify-content: center;
+        }
 
-.product-item {
-    text-align: center;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .product-item {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 12px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.product-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
+        .product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-.product-item img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    object-fit: cover;
-}
+        .product-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
 
-.product-item h3 {
-    margin: 10px 0;
-    font-size: 1.1em;
-    color: #333;
-}
+        .product-item h3 {
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #333;
+        }
 
-.product-item p {
-    margin: 5px 0;
-    color: #555;
-}
+        .product-item p {
+            margin: 5px 0;
+            color: #555;
+        }
 
-.choose-btn {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: #e3240b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-decoration: none;
-}
+        .choose-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #e3240b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+        }
 
-.choose-btn:hover {
-    background-color: #ffdd00;
-    color: black;
-    transform: scale(1.1);
-}
+        .choose-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+            transform: scale(1.1);
+        }
 
-select {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-    border: 1px solid #e3240b;
-    border-radius: 5px;
-    background-color: white;
-    color: #333;
-    font-size: 0.9em;
-    font-family: 'Montserrat', sans-serif;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+        select {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #e3240b;
+            border-radius: 5px;
+            background-color: white;
+            color: #333;
+            font-size: 0.9em;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-select:focus {
-    outline: none;
-    border-color: #ffdd00;
-    box-shadow: 0 0 5px rgba(255, 221, 0, 0.5);
-}
+        select:focus {
+            outline: none;
+            border-color: #ffdd00;
+            box-shadow: 0 0 5px rgba(255, 221, 0, 0.5);
+        }
 
-#cart {
-    margin-top: 10px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 1000;
-    display: none;
-}
+        #cart {
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            z-index: 1000;
+            display: none;
+        }
 
-#cart-items {
-    margin-bottom: 10px;
-}
+        #cart-items {
+            margin-bottom: 10px;
+        }
 
-#cart-total {
-    font-weight: 700;
-    margin-bottom: 10px;
-}
+        #cart-total {
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #e3240b;
-    color: white;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    border-top: 4px solid #ffdd00;
-}
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #e3240b;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 4px solid #ffdd00;
+        }
 
-#whatsapp-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: black;
-    text-decoration: none;
-    font-size: 1em;
-   margin-top: 10px;
-    padding: 8px 15px;
-    background-color: #e3240b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
+        #whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: black;
+            text-decoration: none;
+            font-size: 1em;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #e3240b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
 
-#whatsapp-btn img {
-    width: 20px;
-    height: 20px;
-}
+        #whatsapp-btn img {
+            width: 20px;
+            height: 20px;
+        }
 
-#refresh-btn {
-    margin-top: 10px;
-    padding: 8px 15px;
-    background-color: #e3240b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-}
+        #whatsapp-btn:hover {
+            background-color: yellow;
+            color: black;
+        }
 
-#refresh-btn:hover {
-    background-color: #ffdd00;
-    color: black;
-}
+        #refresh-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #e3240b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
 
-#cart-btn {
-    position: fixed;
-    bottom: 60px;
-    right: 10px;
-    background-color: yellow;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
-}
+        #refresh-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+        }
 
-#cart-btn:hover {
-    background-color: white;
-    color: black;
-}
+        #cart-btn {
+            position: fixed;
+            bottom: 60px;
+            right: 10px;
+            background-color: yellow;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+        }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1002;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
+        #cart-btn:hover {
+            background-color: white;
+            color: black;
+        }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 15px;
-    border: 1px solid #888;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 12px;
-    position: relative;
-}
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 24px;
-    font-weight: bold;
-}
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 15px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+        .modal-content:hover {
+            transform: scale(1.02);
+        }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.modal-header h2 {
-    margin: 0;
-}
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-.modal-body {
-    margin-top: 10px;
-}
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.modal-body p {
-    margin: 5px 0;
-}
+        .modal-header h2 {
+            margin: 0;
+        }
 
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
+        .modal-body {
+            margin-top: 10px;
+        }
 
-.edit-btn {
-    padding: 8px 15px;
-    background-color: #e3240b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-}
+        .modal-body p {
+            margin: 5px 0;
+        }
 
-.edit-btn:hover {
-    background-color: #ffdd00;
-    color: black;
-}
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
 
-@media (max-width: 768px) {
-    header img {
-        width: 120px;
-        height: 120px;
-    }
+        .edit-btn {
+            padding: 8px 15px;
+            background-color: #e3240b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
 
-    h1 {
-        font-size: 1.5em;
-    }
+        .edit-btn:hover {
+            background-color: #ffdd00;
+            color: black;
+        }
 
-    p {
-        font-size: 0.9em;
-    }
+        @media (max-width: 768px) {
+            header img {
+                width: 120px;
+                height: 120px;
+            }
 
-    .choose-btn {
-        font-size: 0.8em;
-    }
+            h1 {
+                font-size: 1.5em;
+            }
 
-    #cart-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2em;
-    }
-}
+            p {
+                font-size: 0.9em;
+            }
 
-@media (max-width: 480px) {
-    header img {
-        width: 100px;
-        height: 100px;
-    }
+            .choose-btn {
+                font-size: 0.8em;
+            }
 
-    h1 {
-        font-size: 1.2em;
-    }
+            #cart-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2em;
+            }
+        }
 
-    p {
-        font-size: 0.8em;
-    }
+        @media (max-width: 480px) {
+            header img {
+                width: 100px;
+                height: 100px;
+            }
 
-    .product-item img {
-        width: 60px;
-        height: 60px;
-    }
+            h1 {
+                font-size: 1.2em;
+            }
 
-    .product-item h3 {
-        font-size: 1em;
-    }
+            p {
+                font-size: 0.8em;
+            }
 
-    #cart {
-        bottom: 5px;
-        right: 5px;
-        width: 90%;
-    }
+            .product-item img {
+                width: 60px;
+                height: 60px;
+            }
 
-    .modal-content {
-        width: 95%;
-    }
-}
+            .product-item h3 {
+                font-size: 1em;
+            }
+
+            #cart {
+                bottom: 5px;
+                right: 5px;
+                width: 90%;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -389,16 +399,20 @@ footer {
             <h3>🛒 Carrito</h3>
             <div id="cart-items"></div>
             <p id="cart-total">Total: $0.00</p>
-          <p>Pagar con PayPal:</p><br>
-         <p> <div id="paypal-form"></div></p><br>
-      
-            <a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
+            <p>Pagar con PayPal:</p><br>
+            <div id="paypal-form"></div>
+            <br>
+            <p>Métodos de pago:</p><br>
+            <div id="payment-methods">
+                <li><input type="radio" id="online-payment" name="payment-method" value="En línea" checked> En línea</li>
+                <li><input type="radio" id="cash-payment" name="payment-method" value="Efectivo"> Efectivo</li>
+                <li><input type="radio" id="transfer-payment" name="payment-method" value="Transferencia"> Transferencia</li>
+            </div><br>
+            <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-               Confirmar orden - Whatsapp
-            </a><br>
-      
-            <br><p><button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button>
-      </p>
+                Enviar orden - Whatsapp
+              </a></p><br>
+            <p><button id="refresh-btn" onclick="clearCart()">Borrar Carrito</button></p>
         </div>
         <button id="cart-btn" onclick="toggleCart()">🛒</button>
         <div class="menu-title-container">
@@ -425,20 +439,18 @@ footer {
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-                 const products = [
+            const products = [
                 { name: "Paquete 1", img: "https://i.imgur.com/Z3uKVA8.png", price: 120, includes: "Incluye pollo y un complemento (arroz, frijoles o tortillas)" },
                 { name: "Paquete 2", img: "https://i.imgur.com/TX5izK2.png", price: 150, includes: "Incluye pollo y dos complementos" },
                 { name: "Paquete 3", img: "https://i.imgur.com/winqkR2.png", price: 170, includes: "Incluye pollo y tres complementos" },
-              { name: "Paquete Medio Pollo", img: "https://i.imgur.com/EFNZp9M.png", price: 70, includes: "Incluye medio pollo y un complemento (arroz, frijoles o tortillas)" },
+                { name: "Paquete Medio Pollo", img: "https://i.imgur.com/EFNZp9M.png", price: 70, includes: "Incluye medio pollo y un complemento (arroz, frijoles o tortillas)" },
                 { name: "Cebollitas", img: "https://i.imgur.com/kVUSAS5.png", price: 60, includes: "" },
                 { name: "Frijoles", img: "https://i.imgur.com/HsFrgxV.png", price: 50, includes: "" },
-               { name: "Arroz", img: "https://i.imgur.com/G5xqAdY.png", price: 40, includes: "" },
+                { name: "Arroz", img: "https://i.imgur.com/G5xqAdY.png", price: 40, includes: "" },
                 { name: "Papas Fritas", img: "https://i.imgur.com/8MMaGMz.png", price: 45, includes: "" },
                 { name: "Salsa Verde", img: "https://i.imgur.com/PtQvvqf.png", price: 25, includes: "" },
                 { name: "Salsa Roja", img: "https://i.imgur.com/C47tGVY.png", price: 25, includes: "" },
-               { name: "Tortillas", img: "https://i.imgur.com/0sriEJp.png", price: 30, includes: "" }
-             
-                
+                { name: "Tortillas", img: "https://i.imgur.com/0sriEJp.png", price: 30, includes: "" }
             ];
 
             const cart = [];
@@ -452,7 +464,7 @@ footer {
                     <h3>${product.name}</h3>
                     <p>$${product.price.toFixed(2)}</p>
                     <p>${product.includes}</p>
-                    <select id="quantity-${index}">
+                    <select id="quantity-${index}" onchange="window.productSelected('${product.name}', this.value)">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -463,6 +475,8 @@ footer {
                 `;
                 return productItem;
             }
+
+           
 
             window.addToCart = function(index, price) {
                 const quantitySelect = document.getElementById(`quantity-${index}`);
@@ -475,6 +489,7 @@ footer {
                 } else {
                     cart.push({ name: product.name, price: price, quantity: quantity });
                 }
+                alert(`Producto agregado al carrito: ${product.name} x ${quantity}`);
                 updateCart();
             };
 
@@ -532,11 +547,16 @@ footer {
 
             function updateWhatsAppLink() {
                 const whatsappBtn = document.getElementById('whatsapp-btn');
-                const message = `Orden de Rosticería:\n${cart.map(item => `${item.name} (${item.quantity}) - $${item.price} c/u`).join('\n')}\nTotal: $${total.toFixed(2)}`;
+                const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+                const message = `Orden de Rosticería:\n${cart.map(item => `${item.name} (${item.quantity}) - $${item.price} c/u`).join('\n')}\nTotal: $${total.toFixed(2)}\nMétodo de pago: ${selectedPaymentMethod}`;
                 const encodedMessage = encodeURIComponent(message);
                 whatsappBtn.href = `https://wa.me/525533355687?text=${encodedMessage}`;
                 whatsappBtn.style.display = total > 0 ? 'inline-flex' : 'none';
             }
+
+            document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+                radio.addEventListener('change', updateWhatsAppLink);
+            });
 
             window.clearCart = function() {
                 cart.length = 0;
