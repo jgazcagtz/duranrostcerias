@@ -20,6 +20,7 @@
             --text-color: #333;
             --white: #ffffff;
             --shadow-color: rgba(0, 0, 0, 0.1);
+            --highlight-color: #ff6f61; /* New highlight color for contrast */
         }
 
         body {
@@ -27,6 +28,11 @@
             background-color: var(--background-color);
             color: var(--text-color);
             overflow-x: hidden;
+        }
+
+        /* Specific Styles for Cart and Modal */
+        #cart p, #product-modal p {
+            color: var(--highlight-color); /* Change text color for better contrast */
         }
 
         /* Keyframes for Animations */
@@ -231,7 +237,7 @@
 
         #cart-items p {
             margin-bottom: 15px;
-            color: #555;
+            color: var(--highlight-color); /* Updated text color */
         }
 
         #cart-total {
@@ -350,7 +356,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: #555;
+            color: var(--highlight-color); /* Updated text color */
         }
 
         .quantity-btn {
@@ -639,6 +645,12 @@
                 <li><input type="radio" id="delivery" name="delivery-method" value="A Domicilio" checked> A Domicilio</li>
                 <li><input type="radio" id="pickup" name="delivery-method" value="Recoger en Sucursal"> Recoger en Sucursal</li>
             </ul>
+            <p>Dirección de entrega:</p>
+            <input type="text" id="delivery-address" placeholder="Ingresa tu dirección completa" style="width: 100%;">
+
+            <p>Notas adicionales:</p>
+            <textarea id="order-notes" placeholder="¿Algo más que deberíamos saber?" rows="4" style="width: 100%;"></textarea>
+
             <p><a id="whatsapp-btn" href="#" target="_blank" style="display: none;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
                 Confirmar orden por Whatsapp
@@ -659,7 +671,7 @@
             <h2>🍗 Menú</h2>
         </div>
         <div id="menu" class="vertical-product-grid"></div>
-        <button onclick="toggleTheme()">Toggle Dark Mode</button>
+       
     </main>
     <footer>
         <p>¡Gracias por tu preferencia!</p>
@@ -675,6 +687,15 @@
             <div class="modal-footer">
                 <button class="edit-btn" onclick="toggleModal()">Cerrar</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Product Info Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleProductModal()">&times;</span>
+            <div id="product-modal-content"></div>
+            <button class="choose-btn" onclick="addProductToCart()">Añadir al Carrito</button>
         </div>
     </div>
 
@@ -696,6 +717,7 @@
 
             const cart = [];
             let total = 0;
+            let selectedProduct = null;
 
             function createProductElement(product, index, layout = 'vertical') {
                 const productItem = document.createElement('div');
@@ -714,7 +736,7 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <p><button class="choose-btn" onclick="window.addToCart(${index}, '${layout}')">Elegir</button></p>
+                            <p><button class="choose-btn" onclick="window.showProductModal(${index}, '${layout}')">Elegir</button></p>
                         </div>
                     `;
                 } else {
@@ -732,7 +754,7 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <p><button class="choose-btn" onclick="window.addToCart(${index}, '${layout}')">Elegir</button></p>
+                            <p><button class="choose-btn" onclick="window.showProductModal(${index}, '${layout}')">Elegir</button></p>
                         </div>
                     `;
                 }
@@ -747,20 +769,36 @@
                 });
             }
 
-            window.addToCart = function(index, layout = 'vertical') {
+            window.showProductModal = function(index, layout = 'vertical') {
                 const productList = layout === 'horizontal' ? topProducts : products;
                 const quantitySelect = document.getElementById(`quantity-${layout}-${index}`);
                 const quantity = parseInt(quantitySelect.value);
-                const product = productList[index];
-                const existingProduct = cart.find(item => item.name === product.name);
+                selectedProduct = { ...productList[index], quantity };
+                
+                const modalContent = document.getElementById('product-modal-content');
+                modalContent.innerHTML = `
+                    <h3>${selectedProduct.name}</h3>
+                    <img src="${selectedProduct.img}" alt="${selectedProduct.name}" style="width: 100px; height: 100px;">
+                    <p>Precio: $${selectedProduct.price.toFixed(2)}</p>
+                    <p>${selectedProduct.includes}</p>
+                    <p>Cantidad: ${selectedProduct.quantity}</p>
+                `;
+
+                toggleProductModal();
+            };
+
+            window.addProductToCart = function() {
+                const existingProduct = cart.find(item => item.name === selectedProduct.name);
 
                 if (existingProduct) {
-                    existingProduct.quantity += quantity;
+                    existingProduct.quantity += selectedProduct.quantity;
                 } else {
-                    cart.push({ name: product.name, price: product.price, quantity: quantity });
+                    cart.push({ name: selectedProduct.name, price: selectedProduct.price, quantity: selectedProduct.quantity });
                 }
-                alert(`Producto agregado al carrito: ${product.name} x ${quantity}`);
+
                 updateCart();
+                toggleProductModal();
+                alert(`Producto agregado al carrito: ${selectedProduct.name} x ${selectedProduct.quantity}`);
             };
 
             function updateCart() {
@@ -830,7 +868,19 @@
                 const whatsappBtn = document.getElementById('whatsapp-btn');
                 const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
                 const selectedDeliveryMethod = document.querySelector('input[name="delivery-method"]:checked').value;
-                const message = `Orden de Rosticería:\n${cart.map(item => `${item.name} (${item.quantity}) - $${item.price} c/u`).join('\n')}\nTotal: $${total.toFixed(2)}\nMétodo de pago: ${selectedPaymentMethod}\nMétodo de entrega: ${selectedDeliveryMethod}`;
+                const notes = document.getElementById('order-notes').value.trim();
+                const deliveryAddress = document.getElementById('delivery-address').value.trim();
+                
+                let message = `Orden de Rosticería:\n${cart.map(item => `${item.name} (${item.quantity}) - $${item.price} c/u`).join('\n')}\nTotal: $${total.toFixed(2)}\nMétodo de pago: ${selectedPaymentMethod}\nMétodo de entrega: ${selectedDeliveryMethod}`;
+                
+                if (deliveryAddress !== '') {
+                    message += `\nDirección: ${deliveryAddress}`;
+                }
+
+                if (notes !== '') {
+                    message += `\nNotas: ${notes}`;
+                }
+
                 const encodedMessage = encodeURIComponent(message);
                 whatsappBtn.href = `https://wa.me/525533355687?text=${encodedMessage}`;
                 whatsappBtn.style.display = total > 0 ? 'inline-flex' : 'none';
@@ -839,6 +889,9 @@
             document.querySelectorAll('input[name="payment-method"], input[name="delivery-method"]').forEach(radio => {
                 radio.addEventListener('change', updateWhatsAppLink);
             });
+
+            document.getElementById('order-notes').addEventListener('input', updateWhatsAppLink);
+            document.getElementById('delivery-address').addEventListener('input', updateWhatsAppLink);
 
             window.clearCart = function() {
                 cart.length = 0;
@@ -863,16 +916,23 @@
             modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
         }
 
+        function toggleProductModal() {
+            const modal = document.getElementById('product-modal');
+            modal.style.display = modal.style.display === 'none' || modal.style.display === '' ? 'block' : 'none';
+        }
+
         window.onclick = function(event) {
             const modal = document.getElementById('edit-modal');
+            const productModal = document.getElementById('product-modal');
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
+            if (event.target === productModal) {
+                productModal.style.display = 'none';
+            }
         }
 
-        function toggleTheme() {
-            document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
-        }
+      
     </script>
 </body>
 </html>
