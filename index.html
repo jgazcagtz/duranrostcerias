@@ -276,7 +276,7 @@
             bottom: 80px;
             right: 20px;
             background-color: var(--accent-color);
-            color: var(--white);
+            color: var (--white);
             border: none;
             border-radius: 50%;
             width: 60px;
@@ -377,7 +377,7 @@
         }
 
         /* New Button Styles */
-        .edit-btn, #refresh-btn {
+        .edit-btn, #refresh-btn, .mercadopago-btn {
             padding: 10px 20px;
             background-color: var(--accent-color);
             color: var(--white);
@@ -388,9 +388,10 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
             text-decoration: none;
             box-shadow: 0 4px 8px var(--shadow-color);
+            display: inline-block;
         }
 
-        .edit-btn:hover, #refresh-btn:hover {
+        .edit-btn:hover, #refresh-btn:hover, .mercadopago-btn:hover {
             background-color: var(--secondary-color);
             color: var(--text-color);
             transform: translateY(-3px);
@@ -634,6 +635,9 @@
             <p id="cart-total">Total: $0.00</p>
             <p>Pagar con PayPal:</p><br>
             <div id="paypal-form"></div>
+            <p>Pagar con Mercado Pago:</p>
+            <a href="https://link.mercadopago.com.mx/segurodeviajes" class="mercadopago-btn" target="_blank">Pagar con Mercado Pago</a><br>
+
             <p>Método de pago:</p>
             <ul id="payment-methods">
                 <li><input type="radio" id="online-payment" name="payment-method" value="En línea" checked> En línea</li>
