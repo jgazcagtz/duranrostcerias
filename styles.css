@@ -16,7 +16,8 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+              font-family: "Underdog", system-ui;
+
             background-color: var(--background-color);
             color: var(--text-color);
             overflow-x: hidden;
